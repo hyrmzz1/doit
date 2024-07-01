@@ -9,6 +9,7 @@ export default function Gnb() {
 
     const handleLogoClick = () => {
         router.push('/');
+        window.location.reload();
     };
     
     return (
