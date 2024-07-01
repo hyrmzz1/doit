@@ -7,6 +7,7 @@ interface TodoFormProps {
 
 export default function TodoForm({ addTodo }: TodoFormProps) {
   const [inputValue, setInputValue] = useState("");
+  const [isEmpty, setIsEmpty] = useState(true);  // TODO) Delete 기능에 의해 empty 되는 경우 처리 로직 필요
   
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -18,6 +19,7 @@ export default function TodoForm({ addTodo }: TodoFormProps) {
     if (inputValue.trim() !== "") {
       addTodo(inputValue);
       setInputValue("");
+      setIsEmpty(false);
     }
   };
 
@@ -37,7 +39,9 @@ export default function TodoForm({ addTodo }: TodoFormProps) {
       {/* TODO) hover 효과 부여 */}
       <button
         type="submit"
-        className="w-1/5 h-12 bg-slate-100 rounded-3xl border-2 border-black"
+        className={`w-1/5 h-12 rounded-3xl border-2 border-black ${
+          isEmpty ? "bg-violet-600 text-white" : "bg-slate-100"
+        }`}
       >
         + 추가하기
       </button>

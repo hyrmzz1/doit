@@ -5,6 +5,8 @@ import TodoIcon from "../../public/todoIcon.svg";
 import DoneIcon from "../../public/doneIcon.svg";
 import { useState } from "react";
 import Item from "@/components/Item";
+import TodoEmpty from "../../public/todoEmptyImg.svg";
+import DoneEmpty from "../../public/doneEmptyImg.svg";
 
 export default function Home() {
   const [todos, setTodos] = useState<{ todo: string; isDone: boolean }[]>([]);
@@ -21,6 +23,9 @@ export default function Home() {
     );
   };
 
+  const isNotDoneItems = todos.filter((item) => !item.isDone);
+  const isDoneItems = todos.filter((item) => item.isDone);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Gnb />
@@ -32,21 +37,33 @@ export default function Home() {
           {/* TO DO */}
           <div>
             <TodoIcon />
-            {todos
-              .filter((item) => !item.isDone)
-              .map((item, index) => (
-                <Item key={index} todo={item.todo} isDone={item.isDone} onToggle={handleToggle} />
-              ))}
+            {isNotDoneItems.length === 0 ? (
+              <div className="flex flex-col items-center">
+                <TodoEmpty />
+                <span className="text-center text-slate-400">할 일이 없어요.<br/>TODO를 새롭게 추가해주세요!</span>
+              </div>
+              ) : (
+                isNotDoneItems.map((item, index) => (
+                  <Item key={index} todo={item.todo} isDone={item.isDone} onToggle={handleToggle} />
+                ))
+              )
+            }
           </div>
 
           {/* DONE */}
           <div>
             <DoneIcon />
-            {todos
-              .filter((item) => item.isDone)
-              .map((item, index) => (
-                <Item key={index} todo={item.todo} isDone={item.isDone} onToggle={handleToggle} />
-              ))}
+            {isDoneItems.length === 0 ? (
+              <div className="flex flex-col items-center">
+                <DoneEmpty />
+                <span className="text-center text-slate-400">아직 다 한 일이 없어요.<br/>해야 할 일을 체크해보세요!</span>
+              </div>
+              ) : (
+                isDoneItems.map((item, index) => (
+                  <Item key={index} todo={item.todo} isDone={item.isDone} onToggle={handleToggle} />
+                ))
+              )
+            }
           </div>
         </div>
       </main>
