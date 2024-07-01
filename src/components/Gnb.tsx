@@ -1,15 +1,11 @@
 'use client'
-import { useRouter } from 'next/navigation'
 import LogoLg from "../../public/logoLg.svg"
 import LogoSm from "../../public/logoSm.svg"
 // TODO) 네비게이션 바 상단에 고정
 
 export default function Gnb() {
-    const router = useRouter();
-
     const handleLogoClick = () => {
-        router.push('/');
-        window.location.reload();
+        window.location.href = '/';
     };
     
     return (
