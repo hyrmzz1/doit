@@ -1,7 +1,7 @@
 'use client'
 import CheckNone from "../../public/checkNone.svg";
 import CheckDone from "../../public/checkDone.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ItemProps {
     todo: string;
@@ -12,11 +12,15 @@ interface ItemProps {
 export default function Item({ todo, isDone: initialIsDone,  onToggle }: ItemProps) {
     const [isDone, setIsDone] = useState<boolean>(false);
 
-    const toggleCheck = () => {
-        const newStatus = !isDone;
-        // setIsDone(newStatus);
-        onToggle(todo, newStatus);
-    };
+    useEffect(() => {
+        setIsDone(initialIsDone);
+      }, [initialIsDone]);
+    
+      const toggleCheck = () => {
+        const newStatus = !isDone; // 새로운 상태 계산
+        setIsDone(newStatus); // 상태 업데이트
+        onToggle(todo, newStatus); // 외부 함수 호출
+      };
     
     return (
         <div className="mt-4 flex justify-start items-center bg-slate-100 rounded-3xl border-2 border-black">
