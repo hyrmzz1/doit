@@ -14,20 +14,21 @@ export default function Item({ todo, isDone: initialIsDone,  onToggle }: ItemPro
 
     useEffect(() => {
         setIsDone(initialIsDone);
-      }, [initialIsDone]);
+      }, [initialIsDone]
+    );
     
-      const toggleCheck = () => {
+    const toggleCheck = () => {
         const newStatus = !isDone; // 새로운 상태 계산
         setIsDone(newStatus); // 상태 업데이트
         onToggle(todo, newStatus); // 외부 함수 호출
-      };
+    };
     
     return (
-        <div className="mt-4 flex justify-start items-center bg-slate-100 rounded-3xl border-2 border-black">
+        <div className={`mt-4 flex justify-start items-center rounded-3xl border-2 border-black ${isDone ? "bg-violet-100" : "bg-slate-100"}`}>
             <button onClick={toggleCheck} className="m-1">
                 {isDone ? <CheckDone /> : <CheckNone />}
             </button>
-            {todo}
+            <span className={`${isDone ? "line-through" : ""}`}>{todo}</span>
         </div>
     );
 }
