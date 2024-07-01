@@ -1,6 +1,6 @@
 import Gnb from "@/components/Gnb";
-import DelBtn from "../../../public/DeleteBtn.svg";
-import EditBtn from "../../../public/EditBtn.svg";
+import DelBtn from "../../../public/deleteBtn.svg";
+import EditBtn from "../../../public/editBtn.svg";
 import CheckNone from "../../../public/checkNone.svg"
 import CheckDone from "../../../public/checkDone.svg"
 

@@ -1,8 +1,8 @@
 'use client';
 import Gnb from "@/components/Gnb";
 import TodoForm from "../components/TodoForm";
-import TodoIcon from "../../public/TodoIcon.svg";
-import DoneIcon from "../../public/DoneIcon.svg";
+import TodoIcon from "../../public/todoIcon.svg";
+import DoneIcon from "../../public/doneIcon.svg";
 import { useState } from "react";
 import Item from "@/components/Item";
 
