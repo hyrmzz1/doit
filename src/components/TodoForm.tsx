@@ -24,7 +24,7 @@ export default function TodoForm({ addTodo }: TodoFormProps) {
   };
 
   return (
-    <form onSubmit={handleAddTodo} className="flex items-center space-x-6 my-6">
+    <form onSubmit={handleAddTodo} className="flex items-center space-x-6 my-6 phone:space-x-4">
       {/* Todo 입력 창 */}
       {/* TODO) focus 효과 부여 */}
       <input
@@ -43,7 +43,8 @@ export default function TodoForm({ addTodo }: TodoFormProps) {
           isEmpty ? "bg-violet-600 text-white" : "bg-slate-100"
         }`}
       >
-        + 추가하기
+        <span className="block phone:hidden">+ 추가하기</span>
+        <span className="hidden phone:block">+</span>
       </button>
     </form>
   );

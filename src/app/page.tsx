@@ -6,7 +6,9 @@ import DoneIcon from "../../public/doneIcon.svg";
 import { useState } from "react";
 import Item from "@/components/Item";
 import TodoEmpty from "../../public/todoEmptyImg.svg";
+import TodoEmptySm from "../../public/todoEmptyImgSm.svg";
 import DoneEmpty from "../../public/doneEmptyImg.svg";
+import DoneEmptySm from "../../public/doneEmptyImgSm.svg";
 
 export default function Home() {
   const [todos, setTodos] = useState<{ todo: string; isDone: boolean }[]>([]);
@@ -30,16 +32,17 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       <Gnb />
 
-      <main className="px-96">
+      <main className="px-96 phone:px-4 tablet:px-4">
         <TodoForm addTodo={addTodo} />
 
-        <div className="grid gap-x-6 grid-cols-2">
+        <div className="grid gap-x-6 grid-cols-2 phone:grid-cols-1 gap-y-6 tablet:grid-cols-1">
           {/* TO DO */}
           <div>
             <TodoIcon />
             {isNotDoneItems.length === 0 ? (
               <div className="flex flex-col items-center">
-                <TodoEmpty />
+                <TodoEmpty className="block phone:hidden" />
+                <TodoEmptySm className="hidden phone:block"/>
                 <span className="text-center text-slate-400">할 일이 없어요.<br/>TODO를 새롭게 추가해주세요!</span>
               </div>
               ) : (
@@ -55,7 +58,8 @@ export default function Home() {
             <DoneIcon />
             {isDoneItems.length === 0 ? (
               <div className="flex flex-col items-center">
-                <DoneEmpty />
+                <DoneEmpty className="block phone:hidden" />
+                <DoneEmptySm className="hidden phone:block"/>
                 <span className="text-center text-slate-400">아직 다 한 일이 없어요.<br/>해야 할 일을 체크해보세요!</span>
               </div>
               ) : (
